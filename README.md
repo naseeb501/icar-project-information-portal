@@ -102,13 +102,13 @@ icar-project-information-portal
 The public link will normally be:
 
 ```text
-https://YOUR-GITHUB-USERNAME.github.io/icar-project-information-portal/
+https://naseeb501.github.io/icar-project-information-portal/
 ```
 
 The administrator page will be:
 
 ```text
-https://YOUR-GITHUB-USERNAME.github.io/icar-project-information-portal/admin.html
+https://naseeb501.github.io/icar-project-information-portal/admin.html
 ```
 
 ## Daily use
