@@ -68,8 +68,14 @@
             <input id="mobile" name="mobile" type="tel" autocomplete="tel" maxlength="20" placeholder="Optional" />
           </div>
           <div class="field">
-            <label for="division">Division</label>
-            <input id="division" type="text" value="Division of System Research and Engineering" readonly />
+            <label class="required" for="division">Division</label>
+            <select id="division" name="division" required>
+              <option value="" selected disabled>Select division</option>
+              <option value="DSRE">DSRE</option>
+              <option value="DTAC">DTAC</option>
+              <option value="DCS">DCS</option>
+              <option value="DAFS">DAFS</option>
+            </select>
           </div>
         </div>
       </section>
