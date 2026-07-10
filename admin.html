@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Administrator dashboard for consolidated project information." />
+  <title>Administrator Dashboard | Project Information Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">ICAR</div>
+        <div>
+          <div class="brand-title">Administrator Dashboard</div>
+          <div class="brand-subtitle">Project Information Portal</div>
+        </div>
+      </div>
+      <a class="header-link" href="index.html">Open Public Form</a>
+    </div>
+  </header>
+
+  <main class="page-shell admin-layout">
+    <section class="hero-card">
+      <p class="eyebrow">Division of System Research and Engineering</p>
+      <h1>Review and export project submissions</h1>
+      <p>
+        Sign in with the authorized administrator account, review all received information,
+        search records, and download a consolidated Microsoft Word file whenever required.
+      </p>
+    </section>
+
+    <section id="loginCard" class="admin-card login-card">
+      <h2>Administrator Sign In</h2>
+      <p>Use the email and password created in Supabase Authentication.</p>
+      <form id="loginForm">
+        <div class="field">
+          <label class="required" for="adminEmail">Email</label>
+          <input id="adminEmail" type="email" autocomplete="username" required placeholder="administrator@icar.gov.in" />
+        </div>
+        <div class="field" style="margin-top:14px;">
+          <label class="required" for="adminPassword">Password</label>
+          <input id="adminPassword" type="password" autocomplete="current-password" required minlength="6" placeholder="Enter password" />
+        </div>
+        <button id="loginBtn" class="btn btn-primary" type="submit" style="width:100%; margin-top:18px;">Sign In</button>
+        <div id="loginNotice" class="notice" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <section id="dashboard" class="dashboard">
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-label">Respondents</div>
+          <div id="respondentCount" class="stat-value">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Projects</div>
+          <div id="projectCount" class="stat-value">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Last submission</div>
+          <div id="lastSubmission" class="stat-value" style="font-size:1.05rem;">—</div>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <div class="toolbar">
+          <input id="searchInput" type="search" placeholder="Search scientist, project, funding agency, PI or Co-PI…" aria-label="Search submissions" />
+          <div class="spacer"></div>
+          <button id="refreshBtn" class="btn btn-secondary" type="button">Refresh</button>
+          <button id="downloadAllBtn" class="btn btn-success" type="button">Download Word File</button>
+          <button id="logoutBtn" class="btn btn-ghost" type="button">Sign Out</button>
+        </div>
+
+        <div id="dashboardNotice" class="notice" style="margin:16px 18px 0;" role="status" aria-live="polite"></div>
+
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>S. No.</th>
+                <th>Scientist</th>
+                <th>Project</th>
+                <th>Role</th>
+                <th>PI / Co-PI(s)</th>
+                <th>Funding Agency</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Submitted</th>
+              </tr>
+            </thead>
+            <tbody id="submissionRows"></tbody>
+          </table>
+          <div id="emptyState" class="empty-state hidden">No matching submissions were found.</div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Authorized access only · Division of System Research and Engineering · ICAR RC for NEH Region
+    </footer>
+  </main>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Project information submission portal for the Division of System Research and Engineering, ICAR RC for NEH Region, Umiam." />
+  <title>Project Information Portal | DSRE, ICAR RC for NEH Region</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">ICAR</div>
+        <div>
+          <div class="brand-title">Project Information Portal</div>
+          <div class="brand-subtitle">Division of System Research and Engineering</div>
+        </div>
+      </div>
+      <a class="header-link" href="admin.html">Administrator Login</a>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero-card" aria-labelledby="pageTitle">
+      <p class="eyebrow">ICAR Research Complex for NEH Region, Umiam</p>
+      <h1 id="pageTitle">Submit details of projects being handled</h1>
+      <p>
+        Enter your details once, add as many projects as required, and add any number of
+        Co-Principal Investigators under each project. The information will be securely
+        compiled for divisional use.
+      </p>
+      <div class="steps" aria-label="Submission steps">
+        <div class="step"><strong>1. Your details</strong><span>Enter scientist and contact information.</span></div>
+        <div class="step"><strong>2. Add projects</strong><span>Use the Add Project button for multiple entries.</span></div>
+        <div class="step"><strong>3. Submit</strong><span>Save centrally and download your own Word copy.</span></div>
+      </div>
+    </section>
+
+    <form id="projectForm" class="form-card" novalidate>
+      <section class="form-section">
+        <div class="section-heading">
+          <div>
+            <h2>Scientist Information</h2>
+            <p>Please provide current and accurate details.</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label class="required" for="scientistName">Name of scientist</label>
+            <input id="scientistName" name="scientistName" type="text" autocomplete="name" required maxlength="120" placeholder="Enter full name" />
+          </div>
+          <div class="field">
+            <label class="required" for="designation">Designation</label>
+            <input id="designation" name="designation" type="text" required maxlength="120" placeholder="e.g., Scientist / Senior Scientist" />
+          </div>
+          <div class="field">
+            <label for="employeeId">Employee ID</label>
+            <input id="employeeId" name="employeeId" type="text" maxlength="50" placeholder="Optional" />
+          </div>
+          <div class="field">
+            <label for="email">Official email</label>
+            <input id="email" name="email" type="email" autocomplete="email" maxlength="150" placeholder="name@icar.gov.in" />
+          </div>
+          <div class="field">
+            <label for="mobile">Mobile number</label>
+            <input id="mobile" name="mobile" type="tel" autocomplete="tel" maxlength="20" placeholder="Optional" />
+          </div>
+          <div class="field">
+            <label for="division">Division</label>
+            <input id="division" type="text" value="Division of System Research and Engineering" readonly />
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <div class="section-heading">
+          <div>
+            <h2>Project Details</h2>
+            <p>Add every ongoing or completed project handled by you.</p>
+          </div>
+          <button class="btn btn-secondary" id="addProjectTop" type="button">＋ Add Project</button>
+        </div>
+
+        <div id="projectList" class="project-list" aria-live="polite"></div>
+      </section>
+
+      <section class="form-section">
+        <div class="field honeypot" aria-hidden="true">
+          <label for="website">Leave this field blank</label>
+          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-secondary" id="addProjectBottom" type="button">＋ Add Another Project</button>
+          <div class="spacer"></div>
+          <button class="btn btn-ghost" id="downloadOwn" type="button">Download My Word Copy</button>
+          <button class="btn btn-success" id="submitBtn" type="submit">Submit Project Information</button>
+        </div>
+
+        <div id="formNotice" class="notice" role="status" aria-live="polite"></div>
+        <p class="helper" style="margin:14px 0 0;">
+          The submitted information will be used for official divisional compilation and workload planning.
+        </p>
+      </section>
+    </form>
+
+    <footer class="footer">
+      Division of System Research and Engineering · ICAR Research Complex for NEH Region · Umiam, Meghalaya
+    </footer>
+  </main>
+
+  <template id="projectTemplate">
+    <article class="project-card" data-project>
+      <div class="project-header">
+        <div class="project-title-wrap">
+          <span class="project-number" data-project-number>1</span>
+          <h3>Project <span data-project-heading-number>1</span></h3>
+        </div>
+        <button class="btn btn-danger btn-small" type="button" data-remove-project>Remove Project</button>
+      </div>
+
+      <div class="project-body">
+        <div class="grid-2">
+          <div class="field full">
+            <label class="required">Title of project</label>
+            <textarea data-field="title" required maxlength="500" placeholder="Enter the complete approved title of the project"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="required">Your role in the project</label>
+            <select data-field="role" required>
+              <option value="">Select role</option>
+              <option value="Principal Investigator (PI)">Principal Investigator (PI)</option>
+              <option value="Co-Principal Investigator (Co-PI)">Co-Principal Investigator (Co-PI)</option>
+            </select>
+          </div>
+
+          <div class="field" data-pi-field>
+            <label>Principal Investigator name</label>
+            <input data-field="pi_name" type="text" maxlength="150" placeholder="Required when your role is Co-PI" />
+          </div>
+
+          <div class="field">
+            <label class="required">Funding agency</label>
+            <input data-field="funding_agency" type="text" required maxlength="200" placeholder="e.g., ICAR, DBT, DST, BIRAC" />
+          </div>
+
+          <div class="field">
+            <label class="required">Project category</label>
+            <select data-field="category" required>
+              <option value="">Select category</option>
+              <option>Institute Project</option>
+              <option>Externally Funded Project</option>
+              <option>All India Coordinated Research Project (AICRP)</option>
+              <option>Consultancy Project</option>
+              <option>Revolving Fund Scheme</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="required">Project status</label>
+            <select data-field="status" required>
+              <option value="">Select status</option>
+              <option>Ongoing</option>
+              <option>Completed</option>
+              <option>Sanctioned / Yet to Start</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Start date</label>
+            <input data-field="start_date" type="date" />
+          </div>
+
+          <div class="field">
+            <label>End date</label>
+            <input data-field="end_date" type="date" />
+          </div>
+
+          <div class="field full">
+            <label>Co-Principal Investigator(s)</label>
+            <div class="copi-list" data-copi-list></div>
+            <div style="margin-top:9px;">
+              <button class="btn btn-secondary btn-small" type="button" data-add-copi>＋ Add Co-PI</button>
+            </div>
+            <span class="helper">Add other Co-PIs as required. When your role is Co-PI, your own name is included automatically.</span>
+          </div>
+
+          <div class="field full">
+            <label>Remarks</label>
+            <textarea data-field="remarks" maxlength="500" placeholder="Optional: project code, sanctioned amount, collaboration details, etc."></textarea>
+          </div>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <template id="copiTemplate">
+    <div class="copi-row" data-copi-row>
+      <input type="text" maxlength="150" placeholder="Enter Co-PI name" data-copi-name />
+      <button class="btn btn-danger icon-btn" type="button" data-remove-copi aria-label="Remove Co-PI">×</button>
+    </div>
+  </template>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
