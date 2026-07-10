@@ -88,6 +88,7 @@ function renderRows() {
     designation.textContent = submission.designation || "";
     scientistCell.append(strong, designation);
     row.appendChild(scientistCell);
+    row.appendChild(createTextCell(submission.division));
 
     row.appendChild(createTextCell(project.title));
 
@@ -143,6 +144,7 @@ function applySearch() {
     const respondentText = [
       submission.scientist_name,
       submission.designation,
+      submission.division,
       submission.employee_id,
       submission.email,
       submission.mobile,
