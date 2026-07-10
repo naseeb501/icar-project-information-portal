@@ -118,7 +118,7 @@ function collectSubmission() {
     employee_id: document.getElementById("employeeId").value.trim(),
     email: document.getElementById("email").value.trim(),
     mobile: document.getElementById("mobile").value.trim(),
-    division: "Division of System Research and Engineering",
+    division: document.getElementById("division").value,
     institute: "ICAR Research Complex for NEH Region, Umiam, Meghalaya",
     projects,
     submitted_at: new Date().toISOString(),
