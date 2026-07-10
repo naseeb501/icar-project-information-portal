@@ -142,6 +142,7 @@ function detailsTable(submission) {
   const rows = [
     ["Name of Scientist", text(submission.scientist_name)],
     ["Designation", text(submission.designation)],
+    ["Division", text(submission.division)],
     ["Employee ID", text(submission.employee_id)],
     ["Email", text(submission.email)],
     ["Mobile", text(submission.mobile)],
@@ -232,6 +233,7 @@ function combinedHeaderRow() {
     "S. No.",
     "Scientist",
     "Designation",
+    "Division",
     "Project title",
     "Role",
     "PI / Co-PI(s)",
@@ -273,6 +275,7 @@ function flattenSubmissions(submissions) {
         serial: serial++,
         scientist: text(submission.scientist_name),
         designation: text(submission.designation),
+        division: text(submission.division),
         title: text(project.title),
         role: text(project.role),
         people,
@@ -302,6 +305,7 @@ export async function createCombinedWord(submissions) {
           makeCell(String(item.serial), { alignment: AlignmentType.CENTER, size: 15 }),
           makeCell(item.scientist, { size: 15 }),
           makeCell(item.designation, { size: 15 }),
+          makeCell(item.division, { alignment: AlignmentType.CENTER, size: 15 }),
           makeCell(item.title, { size: 15 }),
           makeCell(item.role, { alignment: AlignmentType.CENTER, size: 15 }),
           makeCell(item.people.split("\n"), { size: 15 }),
@@ -317,7 +321,7 @@ export async function createCombinedWord(submissions) {
       new TableRow({
         children: [
           new TableCell({
-            columnSpan: 8,
+            columnSpan: 9,
             children: [
               new Paragraph({
                 alignment: AlignmentType.CENTER,
